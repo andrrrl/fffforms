@@ -1,0 +1,46 @@
+<mat-card>
+    <mat-card-title>Agregar nuevo</mat-card-title>
+    <mat-card-content>
+        <form #form="ngForm">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Usuario" name="user" [(ngModel)]="item.user" #user="ngModel"
+                       required>
+            </mat-form-field>
+            <span *ngIf="user.errors?.required && (user.dirty || user.touched)">Campo requerido!</span>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="workshop" name="workshop" [(ngModel)]="item.workshop"
+                       #workshop="ngModel" required minlength="5">
+            </mat-form-field>
+            <span *ngIf="workshop.errors?.minlength && (workshop.dirty || workshop.touched)">Mínimo 5 caracteres!</span>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="ticketPrice" name="ticketPrice"
+                       [(ngModel)]="item.ticketPrice" #ticketPrice="ngModel" required>
+            </mat-form-field>
+            <span *ngIf="ticketPrice.errors?.required && (ticketPrice.dirty || ticketPrice.touched)">Campo
+                requerido!</span>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="url" name="url" [(ngModel)]="item.url" #url="ngModel" required
+                       [pattern]="urlPattern" minlength="10">
+            </mat-form-field>
+            <span *ngIf="url.errors?.pattern && (url.dirty || url.touched)">URL inválida!</span>
+            <span *ngIf="url.errors?.minlength && (url.dirty || url.touched)">URL muy corta!</span>
+
+            <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="submit()">Guardar</button>
+
+        </form>
+        <!-- <pre>
+            Form valid: {{ form.valid }}
+            Form invalid: {{ form.invalid }}
+            Form pristine: {{ form.pristine }}
+            Form dirty: {{ form.dirty }}
+
+        </pre> -->
+        <pre>
+            User touched: {{ user.touched }}
+            User untouched: {{ user.untouched }}
+        </pre>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-card-title>Editar item</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Usuario" formControlName="user">
+                <span *ngIf="usuario.getError('required') && (usuario.dirty || usuario.touched)">
+                    Dato requerido!
+                </span>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Workshop" formControlName="workshop">
+                <span *ngIf="workshop.getError('required') && (workshop.dirty || workshop.touched)">
+                    Dato requerido!
+                </span>
+                <span *ngIf="workshop.getError('minlength') && (workshop.dirty || workshop.touched)">
+                    Debe tener al menos 5 caracteres!
+                </span>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="number" matInput placeholder="Ticket price" formControlName="ticketPrice">
+                <span *ngIf="ticketPrice.getError('required') && (ticketPrice.dirty || ticketPrice.touched)">
+                    Dato requerido!
+                </span>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="URL" formControlName="url">
+                <span *ngIf="url.getError('pattern') && (url.dirty || url.touched)">
+                    URL inválida!
+                </span>
+                <span *ngIf="url.getError('minlength') && (url.dirty || url.touched)">
+                    URL muy corta!
+                </span>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="editItem()">Guardar</button>
+        </form>
+        <div *ngIf="formStatusChange$ | async as status">
+            {{ status }}
+        </div>
+    </mat-card-content>
+</mat-card>

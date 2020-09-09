@@ -1,3 +1,4 @@
+import { WorkshopItem } from './../model/model';
 import { Injectable } from '@angular/core';
 import { WorkshopItem } from '../model/model';
 
@@ -37,4 +38,19 @@ export class WorkshopService {
   getWorkshopItems(): WorkshopItem[] {
     return DATA;
   }
+
+  getWorkshopItem(id): WorkshopItem {
+    return DATA.find(item => item.id === id);
+  }
+
+  addWorkshopItem(item: WorkshopItem): void {
+    item.id = Math.floor(Math.random() * 10000);
+    DATA.push(item);
+  }
+
+  updateWorkshopItem(item: WorkshopItem): void {
+    const idx = DATA.findIndex(x => x.id === item.id);
+    DATA[idx] = item;
+  }
+
 }

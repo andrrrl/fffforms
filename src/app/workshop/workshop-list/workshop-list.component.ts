@@ -22,7 +22,7 @@ export class WorkshopListComponent implements OnInit {
   }
 
   editItem(item: WorkshopItem): void {
-
+    this.router.navigate(['workshop', 'edit', item.id]);
   }
 
   deleteItem(item: WorkshopItem): void {
